@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Сообщения</title>
+</head>
+<body>
+<form th:action="@{/logout}" method="post">
+    <input type="submit" value="Выйти"/>
+</form><br>
+<form method="post" th:action="@{/create}" th:object="${message}">
+    <input type="text" th:field="*{text}" id="text" placeholder="Введите сообщение"/>
+    <input type="text" th:field="*{tag}" id="tag" placeholder="Введите тэг"/>
+    <input type="submit" value="Создать"/>
+</form><br>
+<div>Список сообщений</div>
+<form th:method="post" th:action="@{/filter}" th:object="${message}">
+    <input type="text" id="tagName" th:field="*{tag}" placeholder="Введите искомый тэг"/>
+    <input type="submit" value="Найти">
+</form><br>
+<div th:each="message : ${messages}">
+    <div th:text="'Текст: ' + ${message.getText()} + ' Тэг: ' + ${message.getTag()} + ' ID: ' + ${message.getId()}"/>
+</div>
+</body>
+</html>
