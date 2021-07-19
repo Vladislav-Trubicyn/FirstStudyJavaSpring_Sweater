@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Список пользователей</title>
+</head>
+<body>
+<p>Список пользователей</p>
+<div th:each="user : ${users}">
+    <div th:text="'Имя ' + ${user.getUsername()} + ' Роль ' + ${user.getRoles()}" ></div>
+    <a th:href="@{/user/{id}(id=${user.getId()})}">Редактировать</a><br><br>
+</div>
+<a href="/message">Страница сообщений</a>
+</body>
+</html>

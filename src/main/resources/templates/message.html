@@ -8,18 +8,19 @@
 <form th:action="@{/logout}" method="post">
     <input type="submit" value="Выйти"/>
 </form><br>
+<a href="/user">Список пользователей</a><br><br>
 <form method="post" th:action="@{/create}" th:object="${message}">
     <input type="text" th:field="*{text}" id="text" placeholder="Введите сообщение"/>
     <input type="text" th:field="*{tag}" id="tag" placeholder="Введите тэг"/>
     <input type="submit" value="Создать"/>
 </form><br>
 <div>Список сообщений</div>
-<form th:method="post" th:action="@{/filter}" th:object="${message}">
-    <input type="text" id="tagName" th:field="*{tag}" placeholder="Введите искомый тэг"/>
+<form th:method="get" th:action="@{/message}" th:object="${message}">
+    <input type="text" id="tagName" th:name="tag" th:value="${filter}" placeholder="Введите искомый тэг"/>
     <input type="submit" value="Найти">
 </form><br>
 <div th:each="message : ${messages}">
-    <div th:text="'Текст: ' + ${message.getText()} + ' Тэг: ' + ${message.getTag()} + ' ID: ' + ${message.getId()}"/>
+    <div th:text="'Текст: ' + ${message.getText()} + ' Тэг: ' + ${message.getTag()} + ' ID: ' + ${message.getId()} + ' Автор ' + ${message.getAuthorUserName()}"/>
 </div>
 </body>
 </html>

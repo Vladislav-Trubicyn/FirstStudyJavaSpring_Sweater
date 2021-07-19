@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import ru.example.sweater.model.Message;
 import ru.example.sweater.model.Role;
 import ru.example.sweater.model.User;
-import ru.example.sweater.service.UserRepository;
+import ru.example.sweater.repository.UserRepository;
 import java.util.Collections;
 
 @Controller
