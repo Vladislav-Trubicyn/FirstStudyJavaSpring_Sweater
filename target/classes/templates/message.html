@@ -8,6 +8,7 @@
 <form th:action="@{/logout}" method="post">
     <input type="submit" value="Выйти"/>
 </form><br>
+<div th:replace="/parts/navbar :: navbar"/>
 <a href="/user">Список пользователей</a><br><br>
 <form method="post" th:action="@{/create}" th:object="${message}">
     <input type="text" th:field="*{text}" id="text" placeholder="Введите сообщение"/>

@@ -5,12 +5,20 @@
     <title>Редактирование пользователя</title>
 </head>
 <body>
-<form th:method="post" th:action="@{/edit}" th:object="${usr}">
+<div th:replace="/parts/navbar :: navbar"/>
+<form th:method="post" th:action="@{/user}" th:object="${usr}">
     <label for="username">Имя пользователя <input type="text" th:field="*{username}" id="username" value="${usr.getUsername()}"/></label><br>
-    <label for="user_id">Айдти пользователя <input type="text" th:field="*{id}" id="user_id" value="${usr.getId()}"/></label><br>
+    <label for="user_id">Айдти пользователя <input type="text" th:field="*{id}" id="user_id" value="${usr.getId()}"/></label><br><br>
     <div th:each="role : ${roles}">
-        <input type="checkbox"  th:id="${role}"/><label th:for="${role}" th:text="${role}"/>
-    </div>
+        <th:bloc th:each="userRole : ${usr.getRoles()}">
+            <th:block th:if="${userRole} == ${role}">
+                <input type="checkbox"  th:id="${role}" th:name="${role}" checked/><label th:for="${role}" th:text="${role}"/>
+            </th:block>
+            <th:block th:unless="${userRole} == ${role}">
+                <input type="checkbox"  th:id="${role}" th:name="${role}"/><label th:for="${role}" th:text="${role}"/>
+            </th:block>
+        </th:bloc>
+    </div><br>
     <input type="submit" value="Перезаписать">
 
 </form>

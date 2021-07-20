@@ -5,6 +5,7 @@
     <title>Список пользователей</title>
 </head>
 <body>
+<div th:replace="/parts/navbar :: navbar"/>
 <p>Список пользователей</p>
 <div th:each="user : ${users}">
     <div th:text="'Имя ' + ${user.getUsername()} + ' Роль ' + ${user.getRoles()}" ></div>
